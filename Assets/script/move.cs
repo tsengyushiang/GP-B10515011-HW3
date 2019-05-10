@@ -9,11 +9,16 @@ public class move : MonoBehaviour
     }
     void Update()
     {
-        float deltaY = Input.acceleration.y + 0.5f;
+        float deltaY = (Input.acceleration.y + 0.5f)*Time.deltaTime*10;
 
         if (transform.localPosition.y + deltaY > threshold) return;
         if (transform.localPosition.y + deltaY < -threshold) return;
 
-        //transform.Translate(0, deltaY, 0);
+        transform.Translate(0, deltaY, 0);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        GetComponent<Animator>().Play("demage");
     }
 }
